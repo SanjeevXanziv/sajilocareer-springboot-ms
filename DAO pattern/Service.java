@@ -1,3 +1,5 @@
+import java.util.*;
+
 public class Service {
 	//This class contains the business logic so all the programming logics are written here
 
@@ -9,5 +11,9 @@ public class Service {
 
 	public void addStudent(Student student) {
 		this.dao.addStudent(student);
+	}
+
+	public List<Student> getAllStudent() {
+		return this.dao.getAllStudent();
 	}
 }

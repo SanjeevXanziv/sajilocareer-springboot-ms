@@ -11,9 +11,20 @@ public class Controller {
 		this.service.addStudent(student);
 	}
 
+	public void getAllStudent() {
+		List<Student> students = this.service.getAllStudent();
+
+		for (Student student : students) {
+			System.out.println("The id is: " + student.getId());
+			System.out.println("The name is: " + student.getName());
+			System.out.println("The address is: " + student.getAddress());
+		}
+	}
+
 	public void menu() {
 		System.out.println("*** Welcome to Student Enrollment System ***");
 		System.out.println("1. Add Student");
+		System.out.println("2. Display Student");
 		System.out.println("5. Exit");
 	}
 
@@ -48,8 +59,11 @@ public class Controller {
 		while(a != 5) {
 			if (a == 1) {
 				controller.addStudent(controller.makeStudentObject());
+			} else if (a == 2) {
+				controller.getAllStudent();
 			}
 
+			controller.menu();
 			Scanner scanNext = new Scanner(System.in); // Input lina lai ready state ma baseko ho
 			System.out.println("Enter your choice: "); 
 			a = scanNext.nextInt();

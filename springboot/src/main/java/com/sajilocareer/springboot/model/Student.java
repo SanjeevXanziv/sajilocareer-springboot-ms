@@ -1,26 +1,31 @@
 package com.sajilocareer.springboot.model;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "student")
 public class Student {
 
-    private int id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id", unique = true)
+    private Integer id;
+
+    @Column(name = "name")
     private String name;
+
+    @Column(name = "address")
     private String address;
 
     public Student() {
 
     }
 
-    public Student(int id, String name, String address) {
-        this.id = id;
-        this.name = name;
-        this.address = address;
-    }
-
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

@@ -18,10 +18,10 @@ public class StudentService {
     }
 
     public void addStudent(Student student) {
-        studentDao.addStudent(student);
+        studentDao.save(student);
     }
 
     public List<Student> getStudentList() {
-        return this.studentDao.getStudentList();
+        return (List<Student>) this.studentDao.findAll();
     }
 }

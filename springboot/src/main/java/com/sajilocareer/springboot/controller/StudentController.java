@@ -70,9 +70,17 @@ public class StudentController {
     }
 
     @GetMapping("/deleteStudent")
-    public ModelAndView deleteStudent(@RequestParam("id") Integer id, ModelAndView modelAndView) throws NotFoundException {
+    public ModelAndView deleteStudent(@RequestParam("id") Integer id, ModelAndView modelAndView) {
         this.studentService.deleteById(id);
         modelAndView.addObject("studentList", this.studentService.getStudentList()); //passing the model to the view
+        modelAndView.setViewName("studentlist"); // resolves the template
+        return modelAndView;
+    }
+
+    @GetMapping("/findByName")
+    public ModelAndView findByName(@RequestParam("name") String name, ModelAndView modelAndView) {
+        List<Student> studentList = this.studentService.findByName(name);
+        modelAndView.addObject("studentList", studentList); //passing the model to the view
         modelAndView.setViewName("studentlist"); // resolves the template
         return modelAndView;
     }

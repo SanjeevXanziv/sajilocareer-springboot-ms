@@ -32,4 +32,8 @@ public class StudentService {
     public void deleteById(Integer id) {
         this.studentDao.deleteById(id);
     }
+
+    public List<Student> findByName(String name) {
+        return this.studentDao.findByName(name);
+    }
 }

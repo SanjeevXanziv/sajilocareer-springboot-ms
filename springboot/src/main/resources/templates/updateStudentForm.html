@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Update Student Form</title>
+</head>
+<body>
+<h1>Update Student Form</h1>
+<form th:action="@{/updateStudent}" method="POST" th:object="${student}">
+    <input type="text" th:field="*{id}" hidden><br>
+    <span>Student Name: </span>
+    <input type="text" th:field="*{name}"><br>
+    <span>Student Address: </span>
+    <input type="text" th:field="*{address}"><br>
+    <button type="submit">Update Student</button>
+</form>
+</body>
+</html>

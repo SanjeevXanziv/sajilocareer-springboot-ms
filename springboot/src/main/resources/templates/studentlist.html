@@ -16,6 +16,8 @@
                 <th>id</th>
                 <th>Name</th>
                 <th>Address</th>
+                <th>Update</th>
+                <th>Delete</th>
             </tr>
             </thead>
             <tbody>
@@ -23,6 +25,8 @@
                 <td th:text="${student.id}"></td>
                 <td th:text="${student.name}"></td>
                 <td th:text="${student.address}"></td>
+                <td><a th:href="@{/updateStudentForm(id=${student.id})}">update</a></td>
+                <td><a th:href="@{/deleteStudent(id=${student.id})}">Delete</a></td>
             </tr>
             </tbody>
         </table>

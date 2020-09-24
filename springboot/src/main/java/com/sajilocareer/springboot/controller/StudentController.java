@@ -2,13 +2,11 @@ package com.sajilocareer.springboot.controller;
 
 import com.sajilocareer.springboot.model.Student;
 import com.sajilocareer.springboot.service.StudentService;
+import javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
@@ -48,6 +46,34 @@ public class StudentController {
     public ModelAndView addStudent(ModelAndView modelAndView) {
         modelAndView.addObject("student", new Student());
         modelAndView.setViewName("addStudent");
+        return modelAndView;
+    }
+
+    @GetMapping("/updateStudentForm")
+    public ModelAndView updateStudentForm(@RequestParam("id") Integer id, ModelAndView modelAndView) throws NotFoundException {
+        Student student = this.studentService.findById(id);
+        if (student == null) {
+            throw new NotFoundException("Student Could not be found");
+        }
+
+        modelAndView.addObject("student", student);
+        modelAndView.setViewName("updateStudentForm");
+        return modelAndView;
+    }
+
+    @PostMapping("updateStudent")
+    public ModelAndView updateStudent(@ModelAttribute Student student, ModelAndView modelAndView) {
+        this.studentService.addStudent(student);
+        modelAndView.addObject("studentList", this.studentService.getStudentList()); //passing the model to the view
+        modelAndView.setViewName("studentlist"); // resolves the template
+        return modelAndView;
+    }
+
+    @GetMapping("/deleteStudent")
+    public ModelAndView deleteStudent(@RequestParam("id") Integer id, ModelAndView modelAndView) throws NotFoundException {
+        this.studentService.deleteById(id);
+        modelAndView.addObject("studentList", this.studentService.getStudentList()); //passing the model to the view
+        modelAndView.setViewName("studentlist"); // resolves the template
         return modelAndView;
     }
 }

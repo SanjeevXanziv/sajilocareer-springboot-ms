@@ -17,6 +17,17 @@ public class Student {
     @Column(name = "address")
     private String address;
 
+    @ManyToOne
+    private StudentType studentType;
+
+    public StudentType getStudentType() {
+        return studentType;
+    }
+
+    public void setStudentType(StudentType studentType) {
+        this.studentType = studentType;
+    }
+
     public Student() {
 
     }
